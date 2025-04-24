@@ -1,0 +1,22 @@
+{
+  "name": "ari10/moneda-pay-lib",
+  "minimum-stability": "stable",
+  "type": "library",
+  "version": "1.0.0-beta",
+  "authors": [
+    {
+      "name": "qoliber",
+      "email": "extensions@qoliber.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "symfony/http-foundation": "*",
+    "symfony/http-client": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ari10\\MonedaPayLib\\": ""
+    }
+  }
+}
