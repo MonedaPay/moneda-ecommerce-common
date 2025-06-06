@@ -1,12 +1,12 @@
 {
-  "name": "ari10/moneda-pay-lib",
+  "name": "moneda/moneda-pay-lib",
   "minimum-stability": "stable",
   "type": "library",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "qoliber",
-      "email": "extensions@qoliber.com"
+      "email": "info@qoliber.com"
     }
   ],
   "require": {
@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ari10\\MonedaPayLib\\": ""
+      "MonedaPay\\MonedaPayLib\\": ""
     }
   }
 }

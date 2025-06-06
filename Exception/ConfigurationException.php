@@ -2,14 +2,14 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Exception;
+namespace MonedaPay\MonedaPayLib\Exception;
 
 use Exception;
 

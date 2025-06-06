@@ -7,12 +7,12 @@
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Test\Integration;
+namespace MonedaPay\MonedaPayLib\Test\Integration;
 
-use Ari10\MonedaPayLib\Enum\Currency;
-use Ari10\MonedaPayLib\Model\DataProvider\FromArrayDataProvider;
-use Ari10\MonedaPayLib\Model\Response\OrderInfoResponse;
-use Ari10\MonedaPayLib\Model\Response\OrderInfoResponseInterface;
+use MonedaPay\MonedaPayLib\Enum\Currency;
+use MonedaPay\MonedaPayLib\Model\DataProvider\FromArrayDataProvider;
+use MonedaPay\MonedaPayLib\Model\Response\OrderInfoResponse;
+use MonedaPay\MonedaPayLib\Model\Response\OrderInfoResponseInterface;
 use PHPUnit\Framework\TestCase;
 
 class ValidResponseDataProviderTest extends TestCase

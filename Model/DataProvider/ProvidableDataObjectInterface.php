@@ -2,19 +2,19 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Model\DataProvider;
+namespace MonedaPay\MonedaPayLib\Model\DataProvider;
 
 interface ProvidableDataObjectInterface
 {
     /**
-     * @param \Ari10\MonedaPayLib\Model\DataProvider\DataProviderInterface $dataProvider
+     * @param \MonedaPay\MonedaPayLib\Model\DataProvider\DataProviderInterface $dataProvider
      *
      * @return self
      */
@@ -22,6 +22,7 @@ interface ProvidableDataObjectInterface
 
     /**
      * @return void
+     * @throws \MonedaPay\MonedaPayLib\Exception\OrderNotFoundException
      */
 
     public function provideData(): void;

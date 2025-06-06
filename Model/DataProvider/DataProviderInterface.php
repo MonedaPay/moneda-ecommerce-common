@@ -2,26 +2,26 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Model\DataProvider;
+namespace MonedaPay\MonedaPayLib\Model\DataProvider;
 
 interface DataProviderInterface
 {
     /**
      * @param callable $callback
      *
-     * @return \Ari10\MonedaPayLib\Model\DataProvider\DataProviderInterface
+     * @return \MonedaPay\MonedaPayLib\Model\DataProvider\DataProviderInterface
      */
     public function setDataCallback(callable $callback): DataProviderInterface;
 
     /**
-     * @param \Ari10\MonedaPayLib\Model\DataProvider\ProvidableDataObjectInterface $object
+     * @param \MonedaPay\MonedaPayLib\Model\DataProvider\ProvidableDataObjectInterface $object
      *
      * @return mixed
      */

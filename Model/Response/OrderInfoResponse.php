@@ -2,17 +2,17 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Model\Response;
+namespace MonedaPay\MonedaPayLib\Model\Response;
 
-use Ari10\MonedaPayLib\Model\ArrayableTrait;
-use Ari10\MonedaPayLib\Model\DataProvider\ProvidableObjectTrait;
+use MonedaPay\MonedaPayLib\Model\ArrayableTrait;
+use MonedaPay\MonedaPayLib\Model\DataProvider\ProvidableObjectTrait;
 
 class OrderInfoResponse implements OrderInfoResponseInterface
 {

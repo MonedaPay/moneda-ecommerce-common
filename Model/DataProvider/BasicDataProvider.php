@@ -2,26 +2,36 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Model\DataProvider;
+namespace MonedaPay\MonedaPayLib\Model\DataProvider;
 
 use Closure;
 
 class BasicDataProvider implements DataProviderInterface
 {
+    /** @var \Closure|null  */
     protected ?Closure $_closure = null;
+
+    /**
+     * @param \MonedaPay\MonedaPayLib\Model\DataProvider\ProvidableDataObjectInterface $object
+     * @return mixed
+     */
     public function provideData(
         ProvidableDataObjectInterface &$object
     ): mixed {
         return ($this->_closure)($object);
     }
 
+    /**
+     * @param callable $callback
+     * @return \MonedaPay\MonedaPayLib\Model\DataProvider\DataProviderInterface
+     */
     public function setDataCallback(callable $callback): DataProviderInterface
     {
         $this->_closure = $callback(...);

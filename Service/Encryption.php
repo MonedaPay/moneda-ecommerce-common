@@ -2,17 +2,17 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Service;
+namespace MonedaPay\MonedaPayLib\Service;
 
-use Ari10\MonedaPayLib\Exception\ConfigurationException;
-use Ari10\MonedaPayLib\Model\ConfigInterface;
+use MonedaPay\MonedaPayLib\Exception\ConfigurationException;
+use MonedaPay\MonedaPayLib\Model\ConfigInterface;
 
 readonly class Encryption
 {
@@ -22,7 +22,7 @@ readonly class Encryption
     }
 
     /**
-     * @throws \Ari10\MonedaPayLib\Exception\ConfigurationException
+     * @throws \MonedaPay\MonedaPayLib\Exception\ConfigurationException
      */
     public function validate(string $message, string $hmac): bool
     {
@@ -30,7 +30,7 @@ readonly class Encryption
     }
 
     /**
-     * @throws \Ari10\MonedaPayLib\Exception\ConfigurationException
+     * @throws \MonedaPay\MonedaPayLib\Exception\ConfigurationException
      */
     public function generate(string $message): string
     {
@@ -38,7 +38,7 @@ readonly class Encryption
     }
 
     /**
-     * @throws \Ari10\MonedaPayLib\Exception\ConfigurationException
+     * @throws \MonedaPay\MonedaPayLib\Exception\ConfigurationException
      */
     private function getEncryptionKey(): string
     {

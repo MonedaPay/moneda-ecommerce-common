@@ -2,23 +2,25 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types=1);
 
-namespace Ari10\MonedaPayLib\Service;
+namespace MonedaPay\MonedaPayLib\Service;
 
-use Ari10\MonedaPayLib\Enum\Currency;
-use Ari10\MonedaPayLib\Model\ConfigInterface;
-use Ari10\MonedaPayLib\Model\Request\CreatePaymentRequestInterface;
-use Ari10\MonedaPayLib\Model\Response\AggregatedOrderStatusResponseInterface;
-use Ari10\MonedaPayLib\Model\Response\OrderInfoResponseInterface;
-use Ari10\MonedaPayLib\Model\Response\ResponseInterface;
+use MonedaPay\MonedaPayLib\Enum\Currency;
+use MonedaPay\MonedaPayLib\Exception\OrderNotFoundException;
+use MonedaPay\MonedaPayLib\Model\ConfigInterface;
+use MonedaPay\MonedaPayLib\Model\Request\CreatePaymentRequestInterface;
+use MonedaPay\MonedaPayLib\Model\Response\AggregatedOrderStatusResponseInterface;
+use MonedaPay\MonedaPayLib\Model\Response\OrderInfoResponseInterface;
+use MonedaPay\MonedaPayLib\Model\Response\ResponseInterface;
 use Exception;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +40,7 @@ class Client
     public const ORDER_ID_REQUEST_KEY = 'orderId';
 
     /** @var string */
-    public const HMAC_REQUEST_KEY = 'tiltup-hmac';
+    public const HMAC_REQUEST_KEY = 'moneda-hmac';
 
     /** @var string */
     public const AGGREGATED_STATUS_REQUEST_KEY = 'aggregatedStatus';
@@ -47,9 +49,9 @@ class Client
     private const HTTP_TIMEOUT = 2000;
 
     /**
-     * @param \Ari10\MonedaPayLib\Model\ConfigInterface $config
+     * @param \MonedaPay\MonedaPayLib\Model\ConfigInterface $config
      * @param \Symfony\Contracts\HttpClient\HttpClientInterface|null $httpClient
-     * @param \Ari10\MonedaPayLib\Service\Encryption|null $encryption
+     * @param \MonedaPay\MonedaPayLib\Service\Encryption|null $encryption
      */
     public function __construct(
         private readonly ConfigInterface $config,
@@ -86,7 +88,7 @@ class Client
     }
 
     /**
-     * @throws \Ari10\MonedaPayLib\Exception\ConfigurationException
+     * @throws \MonedaPay\MonedaPayLib\Exception\ConfigurationException
      */
     public function createStatusUpdate(
         AggregatedOrderStatusResponseInterface &$responseObject
@@ -107,20 +109,28 @@ class Client
         $responseObject->setOrderId($orderId);
         $responseObject->setAggregatedStatus($aggregatedStatus);
 
-        $responseObject->provideData();
-
+        try {
+            $responseObject->provideData();
+        } catch (OrderNotFoundException $e) {
+            throw new BadRequestException(
+                $e->getMessage(),
+                Response::HTTP_NOT_FOUND,
+                null
+            );
+        }
         return $responseObject;
     }
 
     /**
-     * @throws \Ari10\MonedaPayLib\Exception\ConfigurationException
+     * @throws \MonedaPay\MonedaPayLib\Exception\ConfigurationException
      */
     public function checkHmac(
-        string                     $requestKey,
+        string|null                $requestKey,
         float|bool|int|string|null $orderId
     ): void
     {
-        if ($this->getEncryption()->generate($orderId) !== $requestKey) {
+        if ($requestKey === null ||
+            $this->getEncryption()->generate($orderId) !== $requestKey) {
             throw new SuspiciousOperationException(
                 'Invalid hmac',
                 Response::HTTP_UNAUTHORIZED
@@ -147,7 +157,7 @@ class Client
     }
 
     /**
-     * @throws \Ari10\MonedaPayLib\Exception\ConfigurationException
+     * @throws \MonedaPay\MonedaPayLib\Exception\ConfigurationException
      */
     public function createOrderInfoRequest(
         OrderInfoResponseInterface &$responseObject
@@ -165,7 +175,15 @@ class Client
         $this->checkHmac($requestKey, $orderId);
 
         $responseObject->setMerchantOrderId($orderId);
-        $responseObject->provideData();
+        try {
+            $responseObject->provideData();
+        } catch (OrderNotFoundException $e) {
+            throw new BadRequestException(
+                $e->getMessage(),
+                Response::HTTP_NOT_FOUND,
+                null
+            );
+        }
 
         return $responseObject;
     }

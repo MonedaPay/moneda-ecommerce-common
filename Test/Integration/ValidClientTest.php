@@ -7,19 +7,19 @@
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Test\Integration;
+namespace MonedaPay\MonedaPayLib\Test\Integration;
 
-use Ari10\MonedaPayLib\Enum\AggregatedOrderStatus;
-use Ari10\MonedaPayLib\Enum\Currency;
-use Ari10\MonedaPayLib\Enum\EcommerceType;
-use Ari10\MonedaPayLib\Model\DataProvider\BasicDataProvider;
-use Ari10\MonedaPayLib\Model\DataProvider\FromArrayDataProvider;
-use Ari10\MonedaPayLib\Model\Request\CreatePaymentRequest;
-use Ari10\MonedaPayLib\Model\Response\AggregatedOrderStatusResponse;
-use Ari10\MonedaPayLib\Model\Response\OrderInfoResponse;
-use Ari10\MonedaPayLib\Service\Client;
-use Ari10\MonedaPayLib\Service\Encryption;
-use Ari10\MonedaPayLib\Test\Integration\Fake\Config;
+use MonedaPay\MonedaPayLib\Enum\AggregatedOrderStatus;
+use MonedaPay\MonedaPayLib\Enum\Currency;
+use MonedaPay\MonedaPayLib\Enum\EcommerceType;
+use MonedaPay\MonedaPayLib\Model\DataProvider\BasicDataProvider;
+use MonedaPay\MonedaPayLib\Model\DataProvider\FromArrayDataProvider;
+use MonedaPay\MonedaPayLib\Model\Request\CreatePaymentRequest;
+use MonedaPay\MonedaPayLib\Model\Response\AggregatedOrderStatusResponse;
+use MonedaPay\MonedaPayLib\Model\Response\OrderInfoResponse;
+use MonedaPay\MonedaPayLib\Service\Client;
+use MonedaPay\MonedaPayLib\Service\Encryption;
+use MonedaPay\MonedaPayLib\Test\Integration\Fake\Config;
 use PHPUnit\Framework\TestCase;
 
 class ValidClientTest extends TestCase
@@ -80,7 +80,7 @@ class ValidClientTest extends TestCase
         );
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $_POST = ['orderId' => 'merch-order-id'];
-        $_SERVER['HTTP_TILTUP_HMAC'] =
+        $_SERVER['HTTP_MONEDA_HMAC'] =
             $this->encryption->generate('merch-order-id');
         ob_start();
         $this->client->createOrderInfoRequest($object);
@@ -108,7 +108,7 @@ class ValidClientTest extends TestCase
             'orderId'          => 'merch-order-id',
             'aggregatedStatus' => AggregatedOrderStatus::UNDERPAID->toString(),
         ];
-        $_SERVER['HTTP_TILTUP_HMAC'] =
+        $_SERVER['HTTP_MONEDA_HMAC'] =
             $this->encryption->generate($_POST['orderId']);
         ob_start();
         $this->client->createStatusUpdate($object);

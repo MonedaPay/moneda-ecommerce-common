@@ -7,11 +7,11 @@
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Test\Integration\Fake;
+namespace MonedaPay\MonedaPayLib\Test\Integration\Fake;
 
-use Ari10\MonedaPayLib\Enum\EcommerceType;
-use Ari10\MonedaPayLib\Enum\Environment;
-use Ari10\MonedaPayLib\Model\ConfigInterface;
+use MonedaPay\MonedaPayLib\Enum\EcommerceType;
+use MonedaPay\MonedaPayLib\Enum\Environment;
+use MonedaPay\MonedaPayLib\Model\ConfigInterface;
 
 class Config implements ConfigInterface
 {
@@ -37,7 +37,7 @@ class Config implements ConfigInterface
 
     public function getBaseEcommerceUrl(): ?string
     {
-        return 'https://app.ari10-magento.test';
+        return 'https://app.monedapay-magento.test';
     }
 
     public function getMerchantId(): ?string

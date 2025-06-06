@@ -2,17 +2,17 @@
 /**
  * Created by Qoliber
  *
- * @category    Ari10
- * @package     Ari10_MonedaPayLib
+ * @category    MonedaPay
+ * @package     MonedaPay_MonedaPayLib
  * @author      qoliber <info@qoliber.com>
  */
 
 declare(strict_types = 1);
 
-namespace Ari10\MonedaPayLib\Model\Request;
+namespace MonedaPay\MonedaPayLib\Model\Request;
 
-use Ari10\MonedaPayLib\Enum\EcommerceType;
-use Ari10\MonedaPayLib\Model\ArrayableTrait;
+use MonedaPay\MonedaPayLib\Enum\EcommerceType;
+use MonedaPay\MonedaPayLib\Model\ArrayableTrait;
 
 class CreatePaymentRequest implements CreatePaymentRequestInterface
 {
