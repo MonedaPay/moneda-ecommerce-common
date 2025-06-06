@@ -1,5 +1,5 @@
 {
-  "name": "moneda/moneda-pay-lib",
+  "name": "moneda/moneda-ecommerce-common",
   "minimum-stability": "stable",
   "type": "library",
   "version": "1.0.0",
