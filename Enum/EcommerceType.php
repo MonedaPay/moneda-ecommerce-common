@@ -18,4 +18,5 @@ enum EcommerceType: string
     case PRESTASHOP = 'PRESTASHOP';
     case SHOPIFY = 'SHOPIFY';
     case MAGENTO = 'MAGENTO';
+    case WOOCOMMERCE = 'WOOCOMMERCE';
 }
