@@ -14,7 +14,7 @@ namespace MonedaPay\MonedaPayLib\Service;
 use MonedaPay\MonedaPayLib\Exception\ConfigurationException;
 use MonedaPay\MonedaPayLib\Model\ConfigInterface;
 
-readonly class Encryption
+class Encryption
 {
     public function __construct(
         private ConfigInterface $configuration

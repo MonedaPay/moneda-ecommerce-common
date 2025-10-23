@@ -2,7 +2,7 @@
   "name": "moneda/moneda-ecommerce-common",
   "minimum-stability": "stable",
   "type": "library",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "qoliber",
